@@ -154,10 +154,10 @@ require('lazy').setup({
 
   {
     -- Theme inspired by Atom
-    'navarasu/onedark.nvim',
+    'catppuccin/nvim',
     priority = 1000,
     config = function()
-      vim.cmd.colorscheme 'onedark'
+      vim.cmd.colorscheme 'catppuccin-macchiato'
     end,
   },
 
@@ -168,9 +168,9 @@ require('lazy').setup({
     opts = {
       options = {
         icons_enabled = false,
-        theme = 'onedark',
+        theme = 'catppuccin',
         component_separators = '|',
-        section_separators = '',
+        section_separators = { left = '', right = '' },
       },
     },
   },
@@ -226,10 +226,9 @@ require('lazy').setup({
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --    You can use this folder to prevent any conflicts with this init.lua if you're interested in keeping
   --    up-to-date with whatever is in the kickstart repo.
-  --    Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
-  --
+  --    Uncomment the following line and add your plugins to `lua/custom/plugin/*.lua` to get going.
   --    For additional information see: https://github.com/folke/lazy.nvim#-structuring-your-plugins
-  -- { import = 'custom.plugins' },
+  { import = 'custom.plugins' }
 }, {})
 
 -- [[ Setting options ]]
@@ -604,9 +603,13 @@ cmp.setup {
   },
 }
 -- Keyremaps 
-vim.keymap.set('n', '<A-j>', ':m +1 ==<CR>')
-vim.keymap.set('n', '<A-k>', ':m -2 ==<CR>')
-vim.keymap.set('v', '<A-j>',  ":m '>+1<CR>gv=gv")
-vim.keymap.set('v', '<A-k>',  ":m '<-2<CR>gv=gv")
+vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
+vim.keymap.set("n", "<A-j>", ":m .+1<CR>==") -- move line up(n)
+vim.keymap.set("n", "<A-k>", ":m .-2<CR>==") -- move line down(n)
+vim.keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv") -- move line up(v)
+vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv") -- move line down(v)
+vim.keymap.set("n", "<C-t>", ":tabnew<CR>==") -- creates new tab
+vim.keymap.set("n", "<leader>n", ":tabn<CR>") -- switch tab
+vim.keymap.set("n", "<leader>p", ":tabp<CR>") -- switch tab
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

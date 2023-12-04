@@ -8,7 +8,6 @@ chmod u+x nvim.appimage
 sudo mv squashfs-root /
 sudo ln -s /squashfs-root/AppRun /usr/bin/nvim
 rm nvim.appimage
-mkdir -p ~/.config/nvim
-mv init.lua ~/.config/nvim
+mv .config ~/.config/
 alias vim=nvim
 alias vi=nvim
